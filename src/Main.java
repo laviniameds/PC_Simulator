@@ -3,11 +3,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		MemoriaPrincipal memoria = new MemoriaPrincipal();
+		//MemoriaPrincipal memoria = new MemoriaPrincipal();
 		
-		memoria.mostrarMemoria();
+		//memoria.mostrarMemoria();
 		
 		//System.out.println(memoria.getValueReg(1));
+		
 
 	}
 
