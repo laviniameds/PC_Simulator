@@ -7,7 +7,7 @@ public class Main {
 		
 		memoria.mostrarMemoria();
 		
-		System.out.println(memoria.getValueReg(1));
+		//System.out.println(memoria.getValueReg(1));
 
 	}
 
