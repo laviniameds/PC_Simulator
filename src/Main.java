@@ -9,7 +9,7 @@ public class Main {
 			uc.push(arr[1], memoria);
 		}
 		else if (arr[0].equalsIgnoreCase("POP")) {
-			uc.pop(memoria);
+			uc.pop(arr[1], memoria);
 		}
 		else if (arr[0].equalsIgnoreCase("ADD")) {
 			uc.add();
@@ -22,33 +22,36 @@ public class Main {
 		UC uc = new UC();
 		MemoriaPrincipal memoria = new MemoriaPrincipal();
 		String IR;
-		
 		String instrucao;
+		int i = 0;
+		String op = "s";
 		
-		System.out.println("Instruções:");
-		instrucao = sc.nextLine();
-		while (!instrucao.equalsIgnoreCase("0")) {
-			uc.addInstrucao(instrucao, memoria);
+		while(op.equalsIgnoreCase("s")) {
+			System.out.println("Instruções:");
 			instrucao = sc.nextLine();
-		}
-				
-		for(int i = 0; i < memoria.getMemoriaInstrucoes().size(); i++) {
+			while (!instrucao.equalsIgnoreCase("0")) {
+				uc.addInstrucao(instrucao, memoria);
+				instrucao = sc.nextLine();
+			}
+			
+			while(i < memoria.getMemoriaInstrucoes().size()) {
+				IR = memoria.getMemoriaInstrucoes().get(i);
+				if (IR.equalsIgnoreCase("-")) break;
+				memoria.mostrarMemoria();
+				uc.mostrarPilha();
+				System.out.println("PC - [M" + i + "]");
+				System.out.println("IR - [" + IR + "]\n\nExecutando...");
+				executarInstrucao(IR, uc, memoria);
+				i++;
+			}
+			i--;
 			memoria.mostrarMemoria();
 			uc.mostrarPilha();
-			System.out.println("PC - [R" + i + "]");
-			IR = memoria.getMemoriaInstrucoes().get(i);
-			System.out.println("IR - [" + IR + "]\n\nExecutando...");
-			executarInstrucao(IR, uc, memoria);
-		}
-		memoria.mostrarMemoria();
-		uc.mostrarPilha();
-		
-		
-		
-		
-		
-		//System.out.println(memoria.getValueReg(1));
-		
+			
+			System.out.print("Continuar?(s/n)\n-> ");
+			op = sc.next();
+			sc.nextLine();
+	}
 		sc.close();
 	}
 

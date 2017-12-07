@@ -4,6 +4,7 @@ public class UC {
 
 	private static int TAMANHO_MEMORIA = 32/2;
 	private static int TAMANHO_PILHA = 10;
+	private int contInstrucao = 0;
 	private ArrayList<Integer> pilha;
 	
 	public UC() {
@@ -26,17 +27,20 @@ public class UC {
 		return this.pilha;
 	}
 	
-	public void pop(MemoriaPrincipal m) {
+	public void pop(String n, MemoriaPrincipal m) {
 		int indice = pilha.size() - 1;
-		m.getMemoriaDados().add(pilha.get(indice));
+		int aux;
+		n = n.replace("M","");
+		aux = Integer.parseInt(n) - 16;
+		m.getMemoriaDados().add(aux, pilha.get(indice));
 		pilha.remove(indice);
 	}
 	
 	public void push(String n, MemoriaPrincipal m) {
 		int aux;
 		
-  		if (n.indexOf("R") >= 0) {
-  			n = n.replace("R","");
+  		if (n.indexOf("M") >= 0) {
+  			n = n.replace("M","");
   			aux = Integer.parseInt(n);
 			pilha.add(m.getMemoriaDados().get(aux-TAMANHO_MEMORIA));
 		}
@@ -52,7 +56,8 @@ public class UC {
 	}
 	
 	public void addInstrucao(String instrucao, MemoriaPrincipal m) {
-		m.getMemoriaInstrucoes().add(instrucao);
+		m.getMemoriaInstrucoes().add(this.contInstrucao, instrucao);
+		this.contInstrucao++;
 	}
 	
 }

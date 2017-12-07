@@ -9,24 +9,17 @@ public class MemoriaPrincipal {
 	public MemoriaPrincipal() {
 		this.memoriaDados = new ArrayList<Integer>(TAMANHO_MEMORIA);
 		this.memoriaInstrucoes = new ArrayList<String>(TAMANHO_MEMORIA);
-		//for (int i = 0; i < TAMANHO_MEMORIA; )
+		for (int i = 0; i < TAMANHO_MEMORIA; i++) {
+			this.memoriaInstrucoes.add("-");
+			this.memoriaDados.add(0);
+		}
 	}
 	
 	public void mostrarMemoria() {
 		System.out.println("\n- Memória -");
-		if (memoriaDados.size() == 0 && memoriaInstrucoes.size() == 0) 
-			System.out.println("   vazio   ");
-		else {
-			if (memoriaInstrucoes.size() > 0) {
-				for (int i = 0; i < memoriaInstrucoes.size(); i++) {
-					System.out.println("R" + i + " - " + "[" + memoriaInstrucoes.get(i) + "]");
-				}
-			}
-			if (memoriaDados.size() > 0) {
-				for (int i = 0; i < memoriaDados.size(); i++) {
-					System.out.println("R" + (i+16) + " - " + "[" + memoriaDados.get(i) + "]");
-				}
-			}
+		for (int i = 0; i < TAMANHO_MEMORIA; i++) {
+			System.out.print("M" + i + " - " + "[" + memoriaInstrucoes.get(i) + "] | ");
+			System.out.println("M" + (i+16) + " - " + "[" + memoriaDados.get(i) + "]");
 		}
 		System.out.println("-----------");
 	}
