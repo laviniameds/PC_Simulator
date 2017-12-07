@@ -14,6 +14,19 @@ public class Main {
 		else if (arr[0].equalsIgnoreCase("ADD")) {
 			uc.add();
 		}
+		else if (arr[0].equalsIgnoreCase("SUB")) {
+			uc.sub();
+		}
+		else if (arr[0].equalsIgnoreCase("MULT")) {
+			uc.mult();
+		}
+		else if (arr[0].equalsIgnoreCase("AND")) {
+			uc.and();
+		}
+		else if (arr[0].equalsIgnoreCase("OR")) {
+			uc.or();
+		}
+		
 	}
 
 	public static void main(String[] args) {
@@ -25,6 +38,11 @@ public class Main {
 		String instrucao;
 		int i = 0;
 		String op = "s";
+		
+		System.out.println("Iniciando o PC...");
+		
+		memoria.mostrarMemoria();
+		uc.mostrarPilha();
 		
 		while(op.equalsIgnoreCase("s")) {
 			System.out.println("Instruções:");
@@ -44,7 +62,7 @@ public class Main {
 				executarInstrucao(IR, uc, memoria);
 				i++;
 			}
-			i--;
+
 			memoria.mostrarMemoria();
 			uc.mostrarPilha();
 			
