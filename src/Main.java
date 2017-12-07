@@ -34,13 +34,14 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		UC uc = new UC();
 		MemoriaPrincipal memoria = new MemoriaPrincipal();
-		String IR;
+		String IR = " - ";
 		String instrucao;
 		int i = 0;
 		String op = "s";
 		
 		System.out.println("Iniciando o PC...");
 		
+		System.out.println("\nPC - [ - ] | IR - [ - ]");
 		memoria.mostrarMemoria();
 		uc.mostrarPilha();
 		
@@ -52,20 +53,23 @@ public class Main {
 				instrucao = sc.nextLine();
 			}
 			
-			while(i < memoria.getMemoriaInstrucoes().size()) {
-				IR = memoria.getMemoriaInstrucoes().get(i);
-				if (IR.equalsIgnoreCase("-")) break;
-				memoria.mostrarMemoria();
-				uc.mostrarPilha();
-				System.out.println("PC - [M" + i + "]");
-				System.out.println("IR - [" + IR + "]\n\nExecutando...");
-				executarInstrucao(IR, uc, memoria);
-				i++;
-			}
-
+			System.out.println("\nExecutando...");
+			System.out.println("\nPC - [M" + i + "] - IR - [" + IR + "]");
 			memoria.mostrarMemoria();
 			uc.mostrarPilha();
 			
+			while(i < memoria.getMemoriaInstrucoes().size()) {
+				IR = memoria.getMemoriaInstrucoes().get(i);
+				if (IR.equalsIgnoreCase("-")) {
+					IR = memoria.getMemoriaInstrucoes().get(i-1);
+					break;
+				}
+				System.out.println("\nPC - [M" + ++i + "] | IR - [" + IR + "]");
+				executarInstrucao(IR, uc, memoria);
+				memoria.mostrarMemoria();
+				uc.mostrarPilha();
+			}
+
 			System.out.print("Continuar?(s/n)\n-> ");
 			op = sc.next();
 			sc.nextLine();
