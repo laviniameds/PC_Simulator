@@ -17,8 +17,11 @@ public class MemoriaPrincipal {
 	
 	public void mostrarMemoria() {
 		System.out.println("\n- Memória -");
+		String espacamento;
 		for (int i = 0; i < TAMANHO_MEMORIA; i++) {
-			System.out.print("M" + i + " - " + "[" + memoriaInstrucoes.get(i) + "] | ");
+			espacamento = "";
+			if (i < 10)	espacamento = espacamento + " ";
+			System.out.print("M" + espacamento + i + " - " + "[" + memoriaInstrucoes.get(i) + "]");
 			System.out.println("M" + (i+16) + " - " + "[" + memoriaDados.get(i) + "]");
 		}
 		System.out.println("-----------");
