@@ -17,7 +17,7 @@ public class Main {
 						return true;
 				}
 		}
-		else if (arr[0].equalsIgnoreCase("ADD") || arr[0].equalsIgnoreCase("SUB") || arr[0].equalsIgnoreCase("MULT") || arr[0].equalsIgnoreCase("AND") || arr[0].equalsIgnoreCase("OR") || arr[0].equalsIgnoreCase("0")) {
+		else if (arr[0].equalsIgnoreCase("XOR") || arr[0].equalsIgnoreCase("DIV") || arr[0].equalsIgnoreCase("ADD") || arr[0].equalsIgnoreCase("SUB") || arr[0].equalsIgnoreCase("MULT") || arr[0].equalsIgnoreCase("AND") || arr[0].equalsIgnoreCase("OR") || arr[0].equalsIgnoreCase("0")) {
 			return true;
 		}
 		System.out.println("Instrução inválida!");
@@ -42,13 +42,18 @@ public class Main {
 		else if (arr[0].equalsIgnoreCase("MULT")) {
 			uc.mult();
 		}
+		else if (arr[0].equalsIgnoreCase("DIV")) {
+			uc.div();
+		}
 		else if (arr[0].equalsIgnoreCase("AND")) {
 			uc.and();
 		}
 		else if (arr[0].equalsIgnoreCase("OR")) {
 			uc.or();
 		}
-		
+		else if (arr[0].equalsIgnoreCase("XOR")) {
+			uc.xor();
+		}
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -70,12 +75,15 @@ public class Main {
 		while(op.equalsIgnoreCase("s")) {
 			System.out.println("Instruções:");
 			instrucao = "ADD";
+			int cont = 0;
 			while (!instrucao.equalsIgnoreCase("0")) {
 				do {
 					instrucao = sc.nextLine();
 				}while(!instrucaoOk(instrucao));
-				if (!instrucao.equalsIgnoreCase("0"))
+				if (!instrucao.equalsIgnoreCase("0")) {
 					uc.addInstrucao(instrucao, memoria);
+					cont++;
+				}
 			}
 			
 			System.out.println("\nExecutando...");
@@ -83,18 +91,19 @@ public class Main {
 			memoria.mostrarMemoria();
 			uc.mostrarPilha();
 			
-			while(i < memoria.getMemoriaInstrucoes().size()) {
+			for(int j = 0; j < cont; j++) {
 				IR = memoria.getMemoriaInstrucoes().get(i);
-				if (IR.equalsIgnoreCase("-")) {
-					IR = memoria.getMemoriaInstrucoes().get(i-1);
-					break;
-				}
-				System.out.println("\nPC - [M" + ++i + "] | IR - [" + IR + "]");
+				i++;
+				if (i == memoria.getMemoriaInstrucoes().size()) i = 0;
+				System.out.println("\nPC - [M" + (i) + "] | IR - [" + IR + "]");
 				executarInstrucao(IR, uc, memoria);
 				memoria.mostrarMemoria();
 				uc.mostrarPilha();
 				System.in.read();
 			}
+			
+			if (i == memoria.getMemoriaInstrucoes().size() - 1)
+				i = 0;
 
 			System.out.print("Continuar?(s/n)\n-> ");
 			op = sc.next();

@@ -29,6 +29,7 @@ public class UC {
 	
 	public void pop(String n, MemoriaPrincipal m) {
 		int indice = pilha.size() - 1;
+		if (indice == -1) return;
 		int aux;
 		n = n.replace("M","");
 		n = n.replace("m","");
@@ -68,6 +69,16 @@ public class UC {
 		pilha.add(aux);
 	}
 	
+	public void div() {
+		int aux;
+		try {
+			aux = pilha.get(pilha.size() - 2) / pilha.get(pilha.size() - 1);
+		}catch (Exception e) {
+			aux = 0;
+		}
+		pilha.add(aux);
+	}
+	
 	public void and() {
 		int aux = pilha.get(pilha.size() - 1) & pilha.get(pilha.size() - 2);
 		pilha.add(aux);
@@ -78,10 +89,18 @@ public class UC {
 		pilha.add(aux);
 	}
 	
+	public void xor() {
+		int aux = pilha.get(pilha.size() - 1) ^ pilha.get(pilha.size() - 2);
+		pilha.add(aux);
+	}
+	
 	
 	public void addInstrucao(String instrucao, MemoriaPrincipal m) {
+		if(this.contInstrucao == TAMANHO_MEMORIA) this.contInstrucao = 0;
+		m.getMemoriaInstrucoes().remove(this.contInstrucao);
 		m.getMemoriaInstrucoes().add(this.contInstrucao, instrucao);
 		this.contInstrucao++;
+		
 	}
 	
 	/*
