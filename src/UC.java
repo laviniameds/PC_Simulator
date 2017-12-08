@@ -41,8 +41,9 @@ public class UC {
 	public void push(String n, MemoriaPrincipal m) {
 		int aux;
 		
-  		if (n.indexOf("M") >= 0) {
+  		if (n.indexOf("M") >= 0 || n.indexOf("m") >= 0) {
   			n = n.replace("M","");
+  			n = n.replace("m","");
   			aux = Integer.parseInt(n);
 			pilha.add(m.getMemoriaDados().get(aux-TAMANHO_MEMORIA));
 		}
