@@ -90,6 +90,7 @@ public class Main {
 			System.out.println("\nPC - [M" + i + "] - IR - [" + IR + "]");
 			memoria.mostrarMemoria();
 			uc.mostrarPilha();
+			System.in.read();
 			
 			for(int j = 0; j < cont; j++) {
 				IR = memoria.getMemoriaInstrucoes().get(i);
