@@ -10,11 +10,14 @@ public class Main {
 				  Integer.parseInt(arr[1]);
 				  return true;
 				} catch (NumberFormatException e) {
-					String aux[] = arr[1].split("");
-					String auxString = arr[1].replace(aux[0], "");
-					int auxInt = Integer.parseInt(auxString);
-					if ((aux[0].equalsIgnoreCase("m") || aux[0].equalsIgnoreCase("M")) && (auxInt > 15 && auxInt < 32))
-						return true;
+					try {
+						String aux[] = arr[1].split("");
+						String auxString = arr[1].replace(aux[0], "");
+						int auxInt = Integer.parseInt(auxString);
+						if ((aux[0].equalsIgnoreCase("m") || aux[0].equalsIgnoreCase("M")) && (auxInt > 15 && auxInt < 32))
+							return true;
+					} catch (Exception e2) {
+					}
 				}
 		}
 		else if (arr[0].equalsIgnoreCase("XOR") || arr[0].equalsIgnoreCase("DIV") || arr[0].equalsIgnoreCase("ADD") || arr[0].equalsIgnoreCase("SUB") || arr[0].equalsIgnoreCase("MULT") || arr[0].equalsIgnoreCase("AND") || arr[0].equalsIgnoreCase("OR") || arr[0].equalsIgnoreCase("0")) {
