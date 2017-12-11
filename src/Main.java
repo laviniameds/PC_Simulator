@@ -21,12 +21,17 @@ public class Main {
 				}
 		}
 		else if (arr[0].equalsIgnoreCase("XOR") || arr[0].equalsIgnoreCase("DIV") || arr[0].equalsIgnoreCase("ADD") || arr[0].equalsIgnoreCase("SUB") || arr[0].equalsIgnoreCase("MULT") || arr[0].equalsIgnoreCase("AND") || arr[0].equalsIgnoreCase("OR") || arr[0].equalsIgnoreCase("0")) {
-			return true;
+			try {
+				@SuppressWarnings("unused")
+				String aux = arr[1];
+			} catch (Exception e) {
+				return true;
+			}
 		}
 		System.out.println("Instrução inválida!");
 		return false;
 	}
-	
+
 	public static void executarInstrucao(String instrucao, UC uc, MemoriaPrincipal memoria) {
 		String arr[] = instrucao.split(" ");
 		
@@ -36,26 +41,28 @@ public class Main {
 		else if (arr[0].equalsIgnoreCase("POP")) {
 			uc.pop(arr[1], memoria);
 		}
-		else if (arr[0].equalsIgnoreCase("ADD")) {
-			uc.add();
-		}
-		else if (arr[0].equalsIgnoreCase("SUB")) {
-			uc.sub();
-		}
-		else if (arr[0].equalsIgnoreCase("MULT")) {
-			uc.mult();
-		}
-		else if (arr[0].equalsIgnoreCase("DIV")) {
-			uc.div();
-		}
-		else if (arr[0].equalsIgnoreCase("AND")) {
-			uc.and();
-		}
-		else if (arr[0].equalsIgnoreCase("OR")) {
-			uc.or();
-		}
-		else if (arr[0].equalsIgnoreCase("XOR")) {
-			uc.xor();
+		else if (uc.getPilha().size() > 1) {
+			if (arr[0].equalsIgnoreCase("ADD")) {
+				uc.add();
+			}
+			else if (arr[0].equalsIgnoreCase("SUB")) {
+				uc.sub();
+			}
+			else if (arr[0].equalsIgnoreCase("MULT")) {
+				uc.mult();
+			}
+			else if (arr[0].equalsIgnoreCase("DIV")) {
+				uc.div();
+			}
+			else if (arr[0].equalsIgnoreCase("AND")) {
+				uc.and();
+			}
+			else if (arr[0].equalsIgnoreCase("OR")) {
+				uc.or();
+			}
+			else if (arr[0].equalsIgnoreCase("XOR")) {
+				uc.xor();
+			}
 		}
 	}
 
@@ -93,7 +100,9 @@ public class Main {
 			System.out.println("\nPC - [M" + i + "] - IR - [" + IR + "]");
 			memoria.mostrarMemoria();
 			uc.mostrarPilha();
+			System.out.println("\nPressione qualquer tecla para continuar...\n");
 			System.in.read();
+			
 			
 			for(int j = 0; j < cont; j++) {
 				IR = memoria.getMemoriaInstrucoes().get(i);
@@ -103,6 +112,7 @@ public class Main {
 				executarInstrucao(IR, uc, memoria);
 				memoria.mostrarMemoria();
 				uc.mostrarPilha();
+				System.out.println("\nPressione qualquer tecla para continuar...\n");
 				System.in.read();
 			}
 			
