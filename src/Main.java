@@ -8,7 +8,8 @@ public class Main {
 		if (arr[0].equalsIgnoreCase("POP") || arr[0].equalsIgnoreCase("PUSH")) {
 			try{
 				  Integer.parseInt(arr[1]);
-				  return true;
+				  if(arr[0].equalsIgnoreCase("PUSH"))
+				  	return true;
 				} catch (NumberFormatException e) {
 					try {
 						String aux[] = arr[1].split("");
@@ -18,6 +19,7 @@ public class Main {
 							return true;
 					} catch (Exception e2) {
 					}
+				} catch (Exception e2) {
 				}
 		}
 		else if (arr[0].equalsIgnoreCase("XOR") || arr[0].equalsIgnoreCase("DIV") || arr[0].equalsIgnoreCase("ADD") || arr[0].equalsIgnoreCase("SUB") || arr[0].equalsIgnoreCase("MULT") || arr[0].equalsIgnoreCase("AND") || arr[0].equalsIgnoreCase("OR") || arr[0].equalsIgnoreCase("0")) {
